@@ -1,3 +1,5 @@
+var favCoins= $('#fav-coin');
+
 var subRedditNames = [
   "bitcoin,BTC",
   "ethereum,ETH",
@@ -58,10 +60,36 @@ function CreateCoinCard(symbol, name, subscribers) {
   var coinCardHTML = "";
   coinCardHTML += `<div class="row">
   <div class="col-1">1</div>
-  <input class="col-1 star" type="checkbox" />
+  <input id="fav-coin" class="col-1 star" type="checkbox" />
   <div class="col">${symbol}: r/${name}</div>
   <div cass="col">${subscribers}</div>
     </div>`;
 
   $(".container").append(coinCardHTML);
-}
+
+
+  var favBtn= $('.row');
+  
+  favBtn.on("change", function() {
+    
+    
+    $('input:first-child');
+    console.log(this);
+
+  });
+
+
+    
+
+};
+
+// $(function() {
+  //   $('.star').change(function() {
+  
+  //     if (this.checked) {
+  //       var tt= $(this);
+  //       console.log(name);
+  //     }
+      
+  //   })
+  // })
