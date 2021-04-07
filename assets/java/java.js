@@ -59,9 +59,17 @@ function CreateCoinCard(symbol, name, subscribers) {
   coinCardHTML += `<div class="row">
   <div class="col-1">1</div>
   <input class="col-1 star" type="checkbox" />
-  <div class="col">${symbol}: r/${name}</div>
+  <div class="col" id="#${symbol}">${symbol}: r/${name}</div>
   <div cass="col">${subscribers}</div>
     </div>`;
 
   $(".container").append(coinCardHTML);
+};
+
+// function to get serch value and scroll to page where value exists
+function searchScroll() {
+  var searchEl = document.querySelector('#symbolSearch').value;
+  console.log(searchEl);
+  // $(window).scrollTo("#" + searchEl + "");
 }
+
