@@ -44,13 +44,19 @@ function Get_RedditSubCount(subRedditName, symbol) {
 // fetch is async so you need to make sure all fetches have completed
 function CollectData(symbol, name, subRedditSubscribers) {
   // Store data for use later.
-  var item = [
-    { coinSymbol: symbol, redditName: name, redditSubs: subRedditSubscribers },
-  ];
-  collectedData.push(item);
-
-  //
+  
+  var item = 
+    { coinSymbol: symbol, redditName: name, redditSubs: subRedditSubscribers };
+ 
+ collectedData.push(item);
+ collectedData.sort((a, b) => (a.redditSubs < b.redditSubs) ? 1 : -1)
+  
+ 
+  console.log(collectedData);
+  //end of sorting function
+  
   CreateCoinCard(symbol, name, subRedditSubscribers);
+ 
 }
 
 function CreateCoinCard(symbol, name, subscribers) {
@@ -64,4 +70,8 @@ function CreateCoinCard(symbol, name, subscribers) {
     </div>`;
 
   $(".container").append(coinCardHTML);
+
 }
+
+
+
