@@ -1,11 +1,13 @@
 var favCoins= $('#fav-coin');
 
+
 var subRedditNames = [
   "bitcoin,BTC",
   "ethereum,ETH",
   "binance,BNB",
   "Tether,USDT",
   "dot,DOT",
+  "nnnn,DDD"
 ]; // add reddit name here
 var collectedData = []; // unsorted data is stored inside this array
 
@@ -13,15 +15,22 @@ var collectedData = []; // unsorted data is stored inside this array
 $(document).ready(function () {
   console.log("Document Loaded.");
 
+
+ 
   // Collects data for all reddits in the array.
   // Since fetch is we
   for (let i = 0; i < subRedditNames.length; i++) {
     // Split the index to get the
     var coinInfo = subRedditNames[i].split(",");
-
+  
     // The reddit name is stored before the ',' so input index '0'
     Get_RedditSubCount(coinInfo[0], coinInfo[1]);
+
+    
+
+
   }
+  
 });
 
 // when given a subredded ex: 'https://www.reddit.com/r/Bitcoin/' we can search for that
@@ -53,43 +62,36 @@ function CollectData(symbol, name, subRedditSubscribers) {
 
   //
   CreateCoinCard(symbol, name, subRedditSubscribers);
+  
+  
 }
 
 function CreateCoinCard(symbol, name, subscribers) {
   // Now that we've stored the data, add the info to the chart
   var coinCardHTML = "";
-  coinCardHTML += `<div class="row">
+  coinCardHTML += `<div class="row fav-line" onchange="toggleCheckbox(this)">
   <div class="col-1">1</div>
   <input id="fav-coin" class="col-1 star" type="checkbox" />
   <div class="col">${symbol}: r/${name}</div>
   <div cass="col">${subscribers}</div>
     </div>`;
 
-  $(".container").append(coinCardHTML);
-
-
-  var favBtn= $('.row');
-  
-  favBtn.on("change", function() {
-    
-    
-    $('input:first-child');
-    console.log(this);
-
-  });
-
-
-    
-
+  $(".container").append(coinCardHTML); 
 };
+favStored= [];
 
-// $(function() {
-  //   $('.star').change(function() {
+function toggleCheckbox(el){
+
   
-  //     if (this.checked) {
-  //       var tt= $(this);
-  //       console.log(name);
-  //     }
-      
-  //   })
-  // })
+
+  if (el.children[1].checked) {
+    console.log(el.children[2].textContent);
+    favStored.push(el.children[2].textContent) 
+    el.children[1].checked= localStorage.getItem('Fav');
+  }
+ 
+  
+console.log(favStored);
+localStorage.setItem("Fav", favStored);
+}
+ 
